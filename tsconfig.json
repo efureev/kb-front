@@ -10,10 +10,20 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "baseUrl": ".",
-    "types": ["axios", "node", "vite/client"],
-    "typeRoots": ["."],
+    "types": [
+      "axios",
+      "node",
+      "vite/client",
+      "vite-plugin-pages/client",
+      "vite-plugin-vue-layouts/client"
+    ],
+    "typeRoots": [
+      "."
+    ],
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ]
     }
   }
 }

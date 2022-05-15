@@ -4,36 +4,42 @@
     <h3>Vue3.0 Typescript Eslint SSR Starter</h3>
     <p class="c-#DB752D">{{ time }}</p>
   </div>
+  <app-menu />
   <nav>
     <router-link :to="{ name: 'index' }">Go to Home</router-link>
-    <router-link :to="{ name: 'user' }">Go to User</router-link>
-    <router-link :to="{ name: 'market' }">Go to Market</router-link>
+    <!--    <router-link :to="{ name: 'user' }">Go to User</router-link>-->
+    <!--    <router-link :to="{ name: 'about' }">Go to about</router-link>-->
+    <router-link :to="{ name: 'profile' }">Go to Profile</router-link>
   </nav>
   <hr />
   <div class="container pt-12px pb-12px">
-    <router-view v-slot="{ Component }">
-      <Suspense>
-        <component :is="Component" />
-      </Suspense>
-    </router-view>
+    <router-view />
+    <!--    <router-view v-slot="{ Component }">-->
+    <!--      <Suspense>-->
+    <!--        <component :is="Component"/>-->
+    <!--      </Suspense>-->
+    <!--    </router-view>-->
   </div>
 </template>
 
 <script lang="ts">
 
+import AppMenu from '@/components/AppMenu.vue'
+
 export default defineComponent({
   name: 'App',
+  components: { AppMenu },
   data() {
     return {
       time: ''
-    };
+    }
   },
   mounted() {
     window.setInterval(() => {
-      this.time = new Date().toLocaleString();
-    }, 1000);
+      this.time = new Date().toLocaleString()
+    }, 1000)
   }
-});
+})
 </script>
 <style scoped>
 .logo {

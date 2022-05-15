@@ -1,26 +1,29 @@
-import { createRouter, createWebHistory, createMemoryHistory } from 'vue-router';
+import generatedRoutes from 'virtual:generated-pages'
+import { setupLayouts } from 'virtual:generated-layouts'
+import {
+  Router,
+  createRouter,
+  createWebHistory,
+  createMemoryHistory
+} from 'vue-router'
 
-export default function () {
-  const routerHistory = import.meta.env.SSR === false ? createWebHistory() : createMemoryHistory();
+import installMiddleware from './mw'
+import { Pinia } from 'pinia'
 
-  return createRouter({
+export const routes = setupLayouts(generatedRoutes)
+
+if (import.meta.env.DEV) {
+  console.log(routes)
+}
+
+export default function (store: Pinia): Router {
+  const routerHistory = import.meta.env.SSR === false ? createWebHistory() : createMemoryHistory()
+
+  const router = createRouter({
     history: routerHistory,
-    routes: [
-      {
-        path: '/',
-        name: 'index',
-        component: () => import('@/views')
-      },
-      {
-        path: '/user',
-        name: 'user',
-        component: () => import('@/views/user.vue')
-      },
-      {
-        path: '/market',
-        name: 'market',
-        component: () => import('@/views/market')
-      }
-    ]
-  });
+    routes
+  })
+  installMiddleware(router, store)
+
+  return router
 }

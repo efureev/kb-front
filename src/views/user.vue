@@ -43,6 +43,7 @@ export default defineComponent({
     const loading = ref(false);
     const isLogin = computed(() => !!userStore.userInfo.token);
     const userInfo = computed(() => userStore.userInfo);
+
     const submitHandle = () => {
       const { userName, password } = params;
       if (!userName) {

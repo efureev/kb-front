@@ -9,7 +9,10 @@ module.exports = {
       jsx: true
     }
   },
-  extends: ['plugin:vue/vue3-recommended', 'plugin:@typescript-eslint/recommended'],
+  extends: [
+    'plugin:vue/vue3-recommended',
+    'plugin:@typescript-eslint/recommended'
+  ],
   rules: {
     camelcase: 0,
     semi: 'off',
@@ -25,8 +28,7 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 0,
     '@typescript-eslint/no-angle-bracket-type-assertion': 0,
     '@typescript-eslint/explicit-module-boundary-types': 0,
-    'import/no-webpack-loader-syntax': 0,
-    // 设置默认eslint规则
+    'import/no-webpack-loader-syntax': 0, // 设置默认eslint规则
     'one-var': 0,
     'arrow-parens': 0,
     'generator-star-spacing': 0,
@@ -41,6 +43,7 @@ module.exports = {
     'no-new': 0,
     'prefer-const': 0,
     'vue/no-v-html': 0,
+    // 'vue/html-closing-bracket-spacing': 0,
     'lines-between-class-members': 0,
     'no-unused-expressions': 0,
     'no-unused-vars': 0,
@@ -50,14 +53,9 @@ module.exports = {
     'spaced-comment': ['error'],
     'no-multi-spaces': ['error'],
     'object-shorthand': ['error', 'always'],
-    'no-multiple-empty-lines': [
-      'error',
-      {
-        max: 1,
-        maxEOF: 1,
-        maxBOF: 0
-      }
-    ],
+    'no-multiple-empty-lines': ['error', {
+      max: 1, maxEOF: 1, maxBOF: 0,
+    }],
     'func-call-spacing': 'off',
     'brace-style': 'off',
     'comma-dangle': ['error', 'never'],
@@ -68,64 +66,27 @@ module.exports = {
     '@typescript-eslint/brace-style': ['error', '1tbs'],
     '@typescript-eslint/func-call-spacing': ['error', 'never'],
     '@typescript-eslint/array-type': 'off',
-    '@typescript-eslint/no-unused-vars': [
-      'error',
-      {
-        argsIgnorePattern: '^h$'
-      }
-    ],
+    '@typescript-eslint/no-unused-vars': ['error', {
+      argsIgnorePattern: '^h$',
+    }],
     'eslint@typescript-eslint/ban-ts-comment': 0,
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/no-this-alias': 0,
     '@typescript-eslint/no-inferrable-types': 0,
-    '@typescript-eslint/semi': ['error'],
+    '@typescript-eslint/semi': 0,
     '@typescript-eslint/indent': ['error', 2],
-    '@typescript-eslint/member-delimiter-style': [
-      'error',
-      {
-        multiline: {
-          delimiter: 'semi',
-          requireLast: true
-        },
-        singleline: {
-          delimiter: 'semi',
-          requireLast: false
-        },
-        multilineDetection: 'brackets'
-      }
-    ],
     '@typescript-eslint/explicit-member-accessibility': 0,
     '@typescript-eslint/explicit-function-return-type': 0,
     '@typescript-eslint/no-empty-function': 0,
-    '@typescript-eslint/member-ordering': [
-      2,
-      {
-        default: [
-          'constructor',
-          'private-field',
-          'protected-field',
-          'public-field',
-          'field',
-          'private-method',
-          'protected-method',
-          'public-method',
-          'method'
-        ]
-      }
-    ],
+    '@typescript-eslint/member-ordering': [2, {
+      default: ['constructor', 'private-field', 'protected-field', 'public-field', 'field', 'private-method', 'protected-method', 'public-method', 'method'],
+    }],
     'vue/valid-template-root': 'off',
     'vue/multi-word-component-names': 'off',
-    'vue/html-self-closing': [
-      'error',
-      {
-        html: {
-          void: 'always',
-          normal: 'never',
-          component: 'always'
-        },
-        svg: 'always',
-        math: 'always'
-      }
-    ]
-  }
-};
+    'vue/html-self-closing': ['error', {
+      html: {
+        void: 'always', normal: 'never', component: 'always',
+      }, svg: 'always', math: 'always',
+    }],
+  },
+}
