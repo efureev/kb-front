@@ -9,4 +9,5 @@
     </Suspense>
     <!--    </ClientOnly>-->
   </main>
+  <CommonFooter />
 </template>

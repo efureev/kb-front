@@ -13,7 +13,7 @@
 <template>
   <div>
     <p class="text-4xl">
-      <icon-carbon-campsite class="inline-block" />
+      <icon-carbon-home class="inline-block" />
     </p>
     <p>
       <a rel="noreferrer" href="https://github.com/frandiox/vitesse-ssr-template" target="_blank"> Vitesse SSR </a>
@@ -24,8 +24,3 @@
     </p>
   </div>
 </template>
-
-<!--<route lang="yaml">
-meta:
-  layout: private
-</route>-->

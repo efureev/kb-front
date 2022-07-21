@@ -1,12 +1,13 @@
 <template>
-  <el-menu :default-active="$route.path" mode="horizontal" @select="handleSelect">
-    <el-menu-item index="/">
-      <el-link href="/admin">Home</el-link>
-    </el-menu-item>
+  {{ $route.path }}
+  <el-menu router :default-active="$route.path" mode="horizontal" @select="handleSelect">
+    <el-menu-item index="/">{{ t('menu.Home') }}</el-menu-item>
 
-    <el-menu-item index="admin">
-      <el-link href="/admin">Admin</el-link>
-    </el-menu-item>
+    <el-menu-item index="/admin">{{ t('menu.Admin') }}</el-menu-item>
+
+    <!--    <el-menu-item index="/admin">
+          <el-link href="/admin">{{ t('menu.Admin') }}</el-link>
+        </el-menu-item>-->
 
     <el-sub-menu index="2">
       <template #title>Workspace</template>
@@ -27,6 +28,10 @@
 </template>
 
 <script lang="ts" setup>
+import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
+
+const { t } = useI18n()
 // import { ClientOnly } from 'vite-ssr'
 // import { ref } from 'vue'
 // import { useRouter } from 'vue-router'
@@ -36,6 +41,7 @@
 
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
-  // const router = useRouter()
+  const router = useRouter()
+  router.push(key)
 }
 </script>

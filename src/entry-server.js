@@ -5,6 +5,8 @@ import createRouter from './router'
 import { renderToString } from '@vue/server-renderer'
 import { createPinia } from 'pinia'
 import { ID_INJECTION_KEY } from 'element-plus'
+import { installI18n } from './i18n'
+import { getAppRouteCtx } from './utils/routeCtx'
 
 function renderPreloadLinks(modules, manifest) {
   let links = ''
@@ -34,10 +36,13 @@ function renderPreloadLink(file) {
 }
 
 export async function render(url, manifest) {
+  const routeCtx = getAppRouteCtx(url)
   const store = createPinia()
-  const router = createRouter(store)
+  const router = createRouter(store, routeCtx.route)
 
   const app = createSSRApp(App)
+  await installI18n(app, routeCtx.locale)
+
   app.use(router).use(store)
 
   app.provide(ID_INJECTION_KEY, {

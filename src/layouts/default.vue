@@ -5,4 +5,5 @@
     </div>
     <router-view />
   </main>
+  <CommonFooter />
 </template>

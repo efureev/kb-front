@@ -11,11 +11,19 @@
     "profile": "Профиль",
     "login": "Войти"
   },
+  "menu": {
+    "Home": "Главная",
+    "Admin": "Админка"
+  },
+  "pages": {
+    "private": "Private",
+    "login": "логин"
+  },
   "intro": {
     "desc": "Opinionated Vite Starter Template",
     "dynamic-route": "Demo of dynamic route",
     "hi": "Hi, {name}!",
     "whats-your-name": "What's your name?"
   },
-  "not-found": "Not found"
+  "not-found": "Не найден"
 }

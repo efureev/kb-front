@@ -58,10 +58,11 @@ export default ({ command }: ConfigEnv) => {
           ElementPlusResolver({ ssr: true, importStyle: 'css' })]
       }),
       // https://github.com/intlify/vite-plugin-vue-i18n
-      /*VueI18n({
-        compositionOnly: true,
-        include: [resolve(__dirname, 'src/i18n/translations/!**')]
-      }),*/
+      /* VueI18n({
+         compositionOnly: true,
+         include: [resolve(__dirname, 'src/i18n/translations/!**')]
+         // include: [resolve(__dirname, 'src/i18n/translations/!**')]
+       }),*/
       // https://github.com/antfu/unplugin-icons
       Icons({
         compiler: 'vue3'
@@ -92,13 +93,16 @@ export default ({ command }: ConfigEnv) => {
         // 'vue-demi'
       ]
     },
-    server: {
-      port: 3000
-    },
+    // server: {
+    //   port: 3000
+    // },
     resolve: {
       alias: {
         '@': resolve(__dirname, 'src')
       }
+    },
+    build: {
+      target: 'esnext'
     }
   }
 

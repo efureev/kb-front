@@ -9,6 +9,9 @@ module.exports = {
       jsx: true
     }
   },
+  globals: {
+    dd: 'readonly'
+  },
   extends: [
     'plugin:vue/vue3-recommended',
     'plugin:@typescript-eslint/recommended'

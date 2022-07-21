@@ -9,10 +9,6 @@ const DEFAULT_FORMAT = {
     style: 'currency',
     currency: 'EUR'
   },
-  JPY: {
-    style: 'currency',
-    currency: 'JPY'
-  },
   CAD: {
     style: 'currency',
     currency: 'CAD'

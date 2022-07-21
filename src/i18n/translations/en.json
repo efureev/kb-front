@@ -8,11 +8,16 @@
     "toggle_langs": "Change languages"
   },
   "app": {
-    "profile": "Профиль",
-    "login": "Войти"
+    "profile": "Profile",
+    "login": "Login"
+  },
+  "menu": {
+    "Home": "Home",
+    "Admin": "Admin"
   },
   "pages": {
-    "private": "Private"
+    "private": "Private",
+    "login": "login"
   },
   "intro": {
     "desc": "Opinionated Vite Starter Template",

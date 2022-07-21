@@ -4,6 +4,8 @@ import { DATE_FORMATS } from './date-formats'
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from './locales'
 import { NUMBER_FORMATS } from './number-formats'
 
+// import messages from '@intlify/vite-plugin-vue-i18n/messages'
+
 export {
   DEFAULT_LOCALE,
   SUPPORTED_LOCALES,
@@ -17,9 +19,9 @@ const messageImports = import.meta.glob('./translations/*.json')
 
 function importLocale(locale: string) {
   const [, importLocale] =
-    Object.entries(messageImports).find(([key]) =>
-      key.includes(`/${locale}.`)
-    ) || []
+  Object.entries(messageImports).find(([key]) =>
+    key.includes(`/${locale}.`)
+  ) || []
 
   return importLocale && importLocale()
 }
@@ -36,14 +38,18 @@ export async function loadAsyncLanguage(i18n: any, locale = DEFAULT_LOCALE) {
   }
 }
 
-export async function installI18n(app: App, locale = '') {
+export async function installI18n(app: App, locale: string = '') {
+  // dd(`installI18n`, locale);
   locale = SUPPORTED_LOCALES.includes(locale) ? locale : DEFAULT_LOCALE
   const messages = await importLocale(locale)
+  // console.log( `messages2`, messages2.default)
+  // console.log( `messages`, messages)
 
   const i18n = createI18n({
     legacy: false,
     locale,
     fallbackLocale: DEFAULT_LOCALE,
+    // messages,
     messages: {
       [locale]: messages?.default || messages
     },

@@ -16,8 +16,8 @@ if (import.meta.env.DEV) {
   console.log(routes)
 }
 
-export default function (store: Pinia): Router {
-  const routerHistory = import.meta.env.SSR === false ? createWebHistory() : createMemoryHistory()
+export default function (store: Pinia, routeBase?: string): Router {
+  const routerHistory = import.meta.env.SSR === false ? createWebHistory(routeBase) : createMemoryHistory()
 
   const router = createRouter({
     history: routerHistory,
