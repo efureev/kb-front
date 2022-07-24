@@ -1,13 +1,11 @@
 <template>
   <div class="head-toolbar">
-    <HeadTimer class="head-toolbar-item" />
-    <!--    <HeadLoginDialog />-->
-    <HeadUserPanel />
-    <!--    <div class="el-menu-item" @click="test"><icon-carbon-login /></div>-->
+    <!--    <HeadTimer class="head-toolbar-item" />-->
 
-    <!--    <el-menu-item index="/login">
-      <icon-carbon-login />
-    </el-menu-item>-->
+    <div class="el-menu-item" @click="toggleDark()">
+      <div i="carbon-sun dark:carbon-moon"></div>
+    </div>
+    <HeadUserPanel />
   </div>
 </template>
 

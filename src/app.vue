@@ -35,14 +35,31 @@
 
 <script lang="ts">
 
-// import { useAuth } from '@/services/auth/auth'
-// import Info from './Info.vue'
-// import Login from './Login.vue'
-
-// useAuth()
+import '@unocss/reset/tailwind.css'
+import 'uno.css'
+import 'element-plus/theme-chalk/base.css'
 
 export default defineComponent({
-  name: 'App'
+  name: 'App',
+  setup() {
+    useHead({
+      title: 'Knowledge base',
+      meta: [
+        { name: 'description', content: 'Opinionated Vite Starter Template' },
+        {
+          name: 'theme-color',
+          content: computed(() => isDark.value ? '#00aba9' : '#ffffff')
+        }
+      ],
+      link: [
+        {
+          rel: 'icon',
+          type: 'image/svg+xml',
+          href: computed(() => preferredDark.value ? '/favicon-dark.svg' : '/favicon.svg')
+        }
+      ]
+    })
+  }
 })
 </script>
 <style scoped>

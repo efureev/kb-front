@@ -35,9 +35,9 @@ const { t, locale } = useI18n()
 
 <template>
   <nav class="text-xl mt-6 space-x-2">
-<!--    <div>URL: {{ appRouteCtx.url }}</div>-->
-<!--    <div>Route: {{ appRouteCtx.route }}</div>-->
-<!--    <div>Lang: {{ appRouteCtx.locale }}</div>-->
+    <!--    <div>URL: {{ appRouteCtx.url }}</div>-->
+    <!--    <div>Route: {{ appRouteCtx.route }}</div>-->
+    <!--    <div>Lang: {{ appRouteCtx.locale }}</div>-->
     <div>Lang (I18n): {{ locale }}</div>
     <router-link class="icon-btn" to="/" :title="t('button.home')">
       <icon-carbon-home />

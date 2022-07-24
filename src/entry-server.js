@@ -3,10 +3,12 @@ import { createSSRApp } from 'vue'
 import { isPromise } from './utils'
 import createRouter from './router'
 import { renderToString } from '@vue/server-renderer'
+import { renderHeadToString } from '@vueuse/head'
 import { createPinia } from 'pinia'
 import { ID_INJECTION_KEY } from 'element-plus'
 import { installI18n } from './i18n'
 import { getAppRouteCtx } from './utils/routeCtx'
+import { createHead } from '@vueuse/head'
 
 function renderPreloadLinks(modules, manifest) {
   let links = ''
@@ -42,8 +44,9 @@ export async function render(url, manifest) {
 
   const app = createSSRApp(App)
   await installI18n(app, routeCtx.locale)
+  const head = createHead()
 
-  app.use(router).use(store)
+  app.use(head).use(router).use(store)
 
   app.provide(ID_INJECTION_KEY, {
     prefix: `ssr-` + Math.floor(Math.random() * 1e4),
@@ -80,9 +83,11 @@ export async function render(url, manifest) {
     await Promise.all(asyncDataFuncs)
     const ctx = {}
     const html = await renderToString(app, ctx)
+    const { headTags, htmlAttrs, bodyAttrs } = renderHeadToString(head)
+    
     const preloadLinks = renderPreloadLinks(ctx.modules, manifest)
     const state = JSON.stringify(store.state.value)
-    return [html, state, preloadLinks]
+    return [html, state, preloadLinks, { headTags, htmlAttrs, bodyAttrs }]
   } catch (error) {
     console.log(error)
   }

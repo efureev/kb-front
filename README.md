@@ -3,25 +3,29 @@
 - Lightning-fast cold server start
 - Instant hot module replacement (HMR) and dev SSR
 - True on-demand compilation
-- Use `vue3 vite2.0 typescript eslint SSR pinia unocss vue-router element-plus scss`
+- Use `vue3 vite3.0 typescript eslint SSR pinia unocss vue-router element-plus scss`
+
+Forked from `https://github.com/vok123/vue3-ts-vite-ssr-starter.git`
 
 # Getting Started
-- dev
-```bash 
-npm i
-npm run dev
+
+- run in SPA serving mode
+
+```shell
+yarn install
+npm dev:spa
 ```
 
 - preview
-```bash 
-npm i
-npm run preview
-```
 
+```shell
+yarn install
+yarn preview
+```
 
 - build
-```bash 
-npm i
-npm run build
-```
 
+```shell
+yarn install
+yarn build
+```

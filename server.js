@@ -74,9 +74,16 @@ async function createServer(root = process.cwd(), isProd = isProduction) {
         render = (await import('./dist/server/entry-server.mjs')).render
       }
 
-      const [appHtml, state, links] = await render(url, manifest)
+      const [appHtml, state, links, { headTags, htmlAttrs, bodyAttrs }] = await render(url, manifest)
+
+      // console.log(headTags)
+      // console.log(htmlAttrs)
+      // console.log(bodyAttrs)
 
       const html = template
+        .replace(`data-html-attrs`, htmlAttrs)
+        .replace(`data-body-attrs`, bodyAttrs)
+        .replace(`<!--head-html-->`, headTags)
         .replace(`<!--preload-links-->`, links)
         .replace(`'<vuex-state>'`, state)
         .replace(`<!--app-html-->`, appHtml)

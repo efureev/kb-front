@@ -11,7 +11,7 @@
 </script>
 
 <template>
-<!--  <div class="font-mono">-->
+  <!--  <div class="font-mono">-->
   <div>
     <p class="text-4xl">
       <icon-carbon-home class="inline-block" />

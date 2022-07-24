@@ -15,12 +15,16 @@ import presetMini from '@unocss/preset-mini'
 import presetUno from '@unocss/preset-uno'
 // import presetWebFonts from '@unocss/preset-web-fonts'
 import AutoImport from 'unplugin-auto-import/vite'
+import Inspect from 'vite-plugin-inspect'
+
 
 export default ({ command }: ConfigEnv) => {
   const config: UserConfig = {
     envDir: resolve(__dirname, './env'),
     plugins: [
-      vuePlugin(),
+      vuePlugin({
+        reactivityTransform: true
+      }),
       vueJsxPlugin(),
       Pages({
         extensions: ['vue', 'md'],
@@ -32,18 +36,9 @@ export default ({ command }: ConfigEnv) => {
       eslintPlugin({
         include: ['src/**/*.vue', 'src/**/*.ts', 'src/**/*.tsx']
       }),
-      Unocss({
-        presets: [
-          presetUno(),
-          /*      presetWebFonts({
-                  fonts: {
-                    sans: 'Roboto',
-                    mono: ['Fira Code', 'Fira Mono:400,700']
-                  }
-                }),*/
-          presetMini()
-        ]
-      }),
+      // https://github.com/antfu/unocss
+      // see unocss.config.ts for config
+      Unocss(),
       Components({
         dts: true,
         resolvers: [
@@ -61,7 +56,11 @@ export default ({ command }: ConfigEnv) => {
       }),
       AutoImport({
         dts: true,
-        imports: ['vue', 'vue-router', 'pinia', 'vue-i18n'],
+        imports: ['vue', 'vue-router', 'pinia', 'vue-i18n', 'vue/macros', '@vueuse/head', '@vueuse/core'],
+        vueTemplate: true,
+        dirs: [
+          'src/composables'
+        ],
         resolvers: [
           // https://github.com/antfu/unplugin-icons
           IconsResolver({
@@ -91,7 +90,11 @@ export default ({ command }: ConfigEnv) => {
             props.color = 'skyblue'
           }
         },*/
-      })
+      }),
+
+      // https://github.com/antfu/vite-plugin-inspect
+      // Visit http://localhost:3333/__inspect/ to see the inspector
+      Inspect()
     ],
     optimizeDeps: {
       include: [
@@ -112,7 +115,8 @@ export default ({ command }: ConfigEnv) => {
       }
     },
     build: {
-      target: 'esnext'
+      target: 'esnext',
+      minify: 'esbuild'
     }
   }
 
