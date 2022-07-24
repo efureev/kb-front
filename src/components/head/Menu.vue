@@ -1,13 +1,11 @@
 <template>
-  {{ $route.path }}
   <el-menu router :default-active="$route.path" mode="horizontal" @select="handleSelect">
+    <div class="menu-logo">
+      <icon-carbon-license-global style="font-size: 2em; color: gray" />
+    </div>
+
     <el-menu-item index="/">{{ t('menu.Home') }}</el-menu-item>
-
     <el-menu-item index="/admin">{{ t('menu.Admin') }}</el-menu-item>
-
-    <!--    <el-menu-item index="/admin">
-          <el-link href="/admin">{{ t('menu.Admin') }}</el-link>
-        </el-menu-item>-->
 
     <el-sub-menu index="2">
       <template #title>Workspace</template>
@@ -23,25 +21,33 @@
     </el-sub-menu>
     <el-menu-item index="3" disabled>Info</el-menu-item>
     <el-menu-item index="4">Orders</el-menu-item>
-    <div style="margin-left: auto"></div>
+
+    <HeadToolbar style="margin-left: auto" />
   </el-menu>
 </template>
 
 <script lang="ts" setup>
-import { useI18n } from 'vue-i18n'
-import { useRouter } from 'vue-router'
 
 const { t } = useI18n()
+const router = useRouter()
 // import { ClientOnly } from 'vite-ssr'
 // import { ref } from 'vue'
-// import { useRouter } from 'vue-router'
 // import RightMenu from './RightMenu.vue'
 
-// const activeIndex = ref('/')
-
-const handleSelect = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-  const router = useRouter()
+const handleSelect = (key: string) => {
+  // const router = useRouter()
+  console.log(key)
+  console.log(router)
   router.push(key)
 }
 </script>
+<style>
+.menu-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /*margin: 0 0 0 10px;*/
+  line-height: var(--el-menu-item-height);
+  font-size: var(--el-menu-item-font-size);
+}
+</style>

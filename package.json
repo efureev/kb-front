@@ -14,6 +14,7 @@
     "lint:eslint": "eslint --cache --fix --max-warnings 0 --ext .js,.vue,.ts ./src"
   },
   "dependencies": {
+    "@feugene/mu": "^3.2.3",
     "@vueuse/core": "^8.9.4",
     "@vueuse/head": "^0.7.6",
     "axios": "^0.27.2",
@@ -32,6 +33,7 @@
     "@typescript-eslint/eslint-plugin": "^5.30.7",
     "@typescript-eslint/parser": "^5.30.7",
     "@unocss/preset-mini": "^0.44.5",
+    "@unocss/preset-web-fonts": "^0.44.5",
     "@vitejs/plugin-vue": "^3.0.1",
     "@vitejs/plugin-vue-jsx": "^2.0.0",
     "@vue/compiler-sfc": "^3.2.37",
@@ -46,14 +48,14 @@
     "sass": "^1.53.0",
     "typescript": "4.7.4",
     "unocss": "^0.44.5",
-    "unplugin-icons": "^0.14.7",
     "unplugin-auto-import": "^0.9.3",
+    "unplugin-icons": "^0.14.7",
     "unplugin-vue-components": "^0.21.1",
     "vite": "^3.0.2",
+    "vite-plugin-eslint": "^1.7.0",
     "vite-plugin-md": "^0.18.1",
     "vite-plugin-pages": "^0.25.0",
     "vite-plugin-vue-layouts": "^0.6.0",
-    "vite-plugin-eslint": "^1.7.0",
     "vue-eslint-parser": "^9.0.3"
   },
   "repository": {

@@ -415,6 +415,11 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@feugene/mu@^3.2.3":
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/@feugene/mu/-/mu-3.2.3.tgz#8904de1e3dc28bb8eb2f2180bbb50a7ed36aa4bf"
+  integrity sha512-aoiUVNS7Iw/ELgqpIjy3CFRdvOcsFRLyV6jtb7iZwjU6hM1LVw8QLXqn9ALr0NxlJxX1DFLfEik9IdpOFYcUsQ==
+
 "@floating-ui/core@^0.7.3":
   version "0.7.3"
   resolved "https://registry.yarnpkg.com/@floating-ui/core/-/core-0.7.3.tgz#d274116678ffae87f6b60e90f88cc4083eefab86"
@@ -914,7 +919,7 @@
     "@unocss/preset-mini" "0.44.5"
     "@unocss/preset-wind" "0.44.5"
 
-"@unocss/preset-web-fonts@0.44.5":
+"@unocss/preset-web-fonts@0.44.5", "@unocss/preset-web-fonts@^0.44.5":
   version "0.44.5"
   resolved "https://registry.yarnpkg.com/@unocss/preset-web-fonts/-/preset-web-fonts-0.44.5.tgz#b3afa9cb98700b3fec4b91e25c1caa5d986eece0"
   integrity sha512-AgR8LNpP/cQIU6POMmDAnSjJWX17VLOH07HPxxF6f/hCg21ZSx1QmAV8ol68JW097d/fxF+jh85sCrTxb85ZGQ==

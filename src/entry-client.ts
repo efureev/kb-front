@@ -8,6 +8,7 @@ import 'element-plus/theme-chalk/base.css'
 import { createPinia } from 'pinia'
 import { installI18n } from '@/i18n'
 import { getAppRouteCtx } from '@/utils/routeCtx'
+import { useAuth } from '@/services/auth/auth'
 
 setGlobalHelpers()
 
@@ -26,5 +27,6 @@ if (window.__INITIAL_STATE__) {
 }
 
 router.isReady().then(() => {
+  useAuth()
   app.mount('#app', true)
 })

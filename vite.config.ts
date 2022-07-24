@@ -8,11 +8,12 @@ import Layouts from 'vite-plugin-vue-layouts'
 import vueJsxPlugin from '@vitejs/plugin-vue-jsx'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
-// import VueI18n from '@intlify/vite-plugin-vue-i18n'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import visualizer from 'rollup-plugin-visualizer'
-import unocss from 'unocss/vite'
+import Unocss from 'unocss/vite'
 import presetMini from '@unocss/preset-mini'
+import presetUno from '@unocss/preset-uno'
+// import presetWebFonts from '@unocss/preset-web-fonts'
 import AutoImport from 'unplugin-auto-import/vite'
 
 export default ({ command }: ConfigEnv) => {
@@ -31,8 +32,17 @@ export default ({ command }: ConfigEnv) => {
       eslintPlugin({
         include: ['src/**/*.vue', 'src/**/*.ts', 'src/**/*.tsx']
       }),
-      unocss({
-        presets: [presetMini()]
+      Unocss({
+        presets: [
+          presetUno(),
+          /*      presetWebFonts({
+                  fonts: {
+                    sans: 'Roboto',
+                    mono: ['Fira Code', 'Fira Mono:400,700']
+                  }
+                }),*/
+          presetMini()
+        ]
       }),
       Components({
         dts: true,
@@ -40,29 +50,29 @@ export default ({ command }: ConfigEnv) => {
           // https://github.com/antfu/unplugin-icons
           IconsResolver({
             prefix: 'icon',
-            enabledCollections: ['carbon']
+            enabledCollections: ['carbon', 'cib']
           }),
-          ElementPlusResolver({ ssr: true, importStyle: 'css' })
+          ElementPlusResolver({
+            ssr: true,
+            importStyle: 'css'
+          })
         ],
         directoryAsNamespace: true
       }),
       AutoImport({
         dts: true,
-        imports: ['vue', 'vue-router', 'pinia'],
+        imports: ['vue', 'vue-router', 'pinia', 'vue-i18n'],
         resolvers: [
           // https://github.com/antfu/unplugin-icons
           IconsResolver({
             prefix: 'icon',
-            enabledCollections: ['carbon']
+            enabledCollections: ['carbon', 'cib']
           }),
-          ElementPlusResolver({ ssr: true, importStyle: 'css' })]
+          ElementPlusResolver({
+            ssr: true,
+            importStyle: 'css'
+          })]
       }),
-      // https://github.com/intlify/vite-plugin-vue-i18n
-      /* VueI18n({
-         compositionOnly: true,
-         include: [resolve(__dirname, 'src/i18n/translations/!**')]
-         // include: [resolve(__dirname, 'src/i18n/translations/!**')]
-       }),*/
       // https://github.com/antfu/unplugin-icons
       Icons({
         compiler: 'vue3'
@@ -117,4 +127,5 @@ export default ({ command }: ConfigEnv) => {
   }
 
   return config
-};
+}
+
