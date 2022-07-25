@@ -11,6 +11,7 @@
     "build:server": "vite build --ssr src/entry-server.js --outDir dist/server",
     "serve": "cross-env NODE_ENV=production node server",
     "preview": "yarn build && yarn serve",
+    "lint": "eslint --ext .js,.vue,.ts .",
     "lint:eslint": "eslint --cache --fix --max-warnings 0 --ext .js,.vue,.ts ./src"
   },
   "dependencies": {
@@ -25,6 +26,7 @@
     "vue-router": "^4.1.2"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^0.25.2",
     "@iconify/json": "^2.1.81",
     "@intlify/vite-plugin-vue-i18n": "^5.0.1",
     "@rollup/plugin-alias": "^3.1.9",

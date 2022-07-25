@@ -1,29 +1,6 @@
-<template>
-  <div class="user">
-    <h3 class="mb-8px">User Page</h3>
-    <div v-if="isLogin" class="info">
-      <el-card class="box-card">
-        <div class="mb-12px c-red">User logged in</div>
-        <div>UserName: <span class="c-#00f">{{ userInfo.name }}</span></div>
-      </el-card>
-    </div>
-    <el-form v-else label-position="top" class="form">
-      <el-form-item label="UserName">
-        <el-input v-model="params.userName" />
-      </el-form-item>
-      <el-form-item label="Password">
-        <el-input v-model="params.password" type="password" />
-      </el-form-item>
-      <el-form-item>
-        <el-button :loading="loading" type="success" @click="submitHandle"> Submit </el-button>
-      </el-form-item>
-    </el-form>
-  </div>
-</template>
-
 <script lang="ts">
-import { ElCard, ElForm, ElFormItem, ElButton, ElInput, ElNotification } from 'element-plus';
-import { useUser } from '@/store/user';
+import { ElButton, ElCard, ElForm, ElFormItem, ElInput, ElNotification } from 'element-plus'
+import { useUser } from '@/store/user'
 
 export default defineComponent({
   name: 'User',
@@ -32,50 +9,79 @@ export default defineComponent({
     ElForm,
     ElButton,
     ElFormItem,
-    ElInput
+    ElInput,
   },
   setup() {
     const params = reactive({
       userName: '',
-      password: ''
-    });
-    const userStore = useUser();
-    const loading = ref(false);
-    const isLogin = computed(() => !!userStore.userInfo.token);
-    const userInfo = computed(() => userStore.userInfo);
+      password: '',
+    })
+    const userStore = useUser()
+    const loading = ref(false)
+    const isLogin = computed(() => !!userStore.userInfo.token)
+    const userInfo = computed(() => userStore.userInfo)
 
     const submitHandle = () => {
-      const { userName, password } = params;
+      const { userName, password } = params
       if (!userName) {
         ElNotification({
           type: 'error',
           title: 'Error',
-          message: 'Username is required'
-        });
-        return;
+          message: 'Username is required',
+        })
+        return
       }
       if (!password) {
         ElNotification({
           type: 'error',
           title: 'Error',
-          message: 'Password is required'
-        });
-        return;
+          message: 'Password is required',
+        })
+        return
       }
-      loading.value = true;
+      loading.value = true
       window.setTimeout(() => {
         userStore.updateUser({
           name: userName,
           userId: '1',
-          token: Math.random().toString(36).slice(-8)
-        });
-        loading.value = false;
-      }, 1500);
-    };
-    return { params, loading, submitHandle, userInfo, isLogin };
-  }
-});
+          token: Math.random().toString(36).slice(-8),
+        })
+        loading.value = false
+      }, 1500)
+    }
+    return { params, loading, submitHandle, userInfo, isLogin }
+  },
+})
 </script>
+
+<template>
+  <div class="user">
+    <h3 class="mb-8px">
+      User Page
+    </h3>
+    <div v-if="isLogin" class="info">
+      <ElCard class="box-card">
+        <div class="mb-12px c-red">
+          User logged in
+        </div>
+        <div>UserName: <span class="c-#00f">{{ userInfo.name }}</span></div>
+      </ElCard>
+    </div>
+    <ElForm v-else label-position="top" class="form">
+      <ElFormItem label="UserName">
+        <ElInput v-model="params.userName" />
+      </ElFormItem>
+      <ElFormItem label="Password">
+        <ElInput v-model="params.password" type="password" />
+      </ElFormItem>
+      <ElFormItem>
+        <ElButton :loading="loading" type="success" @click="submitHandle">
+          Submit
+        </ElButton>
+      </ElFormItem>
+    </ElForm>
+  </div>
+</template>
 
 <style lang="scss">
 .form {

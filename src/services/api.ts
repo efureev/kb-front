@@ -1,8 +1,8 @@
 // import { useRouter } from 'vue-router'
 // import { useAuth, AUTH_TOKEN } from './auth'
-import { createRequest } from './request'
 import toQueryString from '@feugene/mu/src/object/toQueryString.js'
-import { AxiosInstance } from 'axios'
+import type { AxiosInstance } from 'axios'
+import { createRequest } from './request'
 
 /*
 
@@ -14,9 +14,8 @@ export const useApiWithAuth = (endpoint: string) => {
 */
 
 export const useApi = (endpoint: string, api?: AxiosInstance) => {
-  if (api === undefined) {
+  if (api === undefined)
     api = createRequest()
-  }
 
   const data = ref()
   const loading = ref<boolean>(false)
@@ -28,7 +27,6 @@ export const useApi = (endpoint: string, api?: AxiosInstance) => {
 
     return api && api.post(endpoint, payload, { withCredentials: true })
       .then((res: any) => {
-        console.log(res)
         data.value = res.data
       })
       .catch((e: Error) => {
@@ -40,15 +38,14 @@ export const useApi = (endpoint: string, api?: AxiosInstance) => {
   }
 
   const doRequest = (query?: Record<string, any>) => {
-    console.log(`doRequest`)
     loading.value = true
     error.value = undefined
 
     let queryString = ''
 
-    if (query) {
-      queryString = '?' + toQueryString(query)
-    }
+    if (query)
+      queryString = `?${toQueryString(query)}`
+
     /*    const cloneData = makeRequestOptions(data)
 
         cloneData.credentials= 'include'
@@ -75,10 +72,9 @@ export const useApi = (endpoint: string, api?: AxiosInstance) => {
   }
 
   const errorMessage = computed(() => {
-    if (error.value) {
-      console.log('?? compute', error.value)
+    if (error.value)
       return error.value.message
-    }
+
     return null
   })
 
@@ -141,7 +137,7 @@ export const useApi = (endpoint: string, api?: AxiosInstance) => {
     if (error.value.response.status === 401 && router) {
       router.push('/subscribe')
     }
-  })*/
+  }) */
 
   return {
     loading,
@@ -151,7 +147,7 @@ export const useApi = (endpoint: string, api?: AxiosInstance) => {
     postRequest,
     doRequest,
     // del,
-    errorMessage
+    errorMessage,
     // errorDetails,
     // errorFields,
     // computedClasses,

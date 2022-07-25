@@ -1,7 +1,7 @@
-import { NavigationGuardNext, RouteLocationNormalized, Router } from 'vue-router'
+import type { NavigationGuardNext, RouteLocationNormalized, Router } from 'vue-router'
 // import { AppCxt } from "~/types"
+import type { Pinia } from 'pinia'
 import { isPromise } from '@/utils'
-import { Pinia } from 'pinia'
 
 export default (router: Router, store: Pinia) =>
   (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
@@ -10,20 +10,18 @@ export default (router: Router, store: Pinia) =>
     const matched = router.resolve(to).matched
     const prevMatched = router.resolve(from).matched
 
-    if (from && !from.name) {
+    if (from && !from.name)
       return next()
-    }
 
     const activated = matched.filter((c, i) => {
       return diffed || (diffed = prevMatched[i] !== c)
     })
 
-    if (!activated.length) {
+    if (!activated.length)
       return next()
-    }
 
     const matchedComponents: any = []
-    matched.map((route) => {
+    matched.forEach((route) => {
       matchedComponents.push(...Object.values(route.components))
     })
 
@@ -32,20 +30,22 @@ export default (router: Router, store: Pinia) =>
       if (asyncData) {
         const config = {
           store,
-          route: to
+          route: to,
         }
-        if (!isPromise(asyncData)) {
+        if (!isPromise(asyncData))
           return Promise.resolve(asyncData(config))
-        }
+
         return asyncData(config)
       }
+      return null
     })
 
     try {
       Promise.all(asyncDataFuncs).then(() => {
         next()
       })
-    } catch (err) {
+    }
+    catch (err) {
       next(err as any)
     }
   }

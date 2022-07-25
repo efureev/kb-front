@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { isAuthenticated, user } from '@/services/auth'
 import Info from './Info.vue'
 import Login from './Login.vue'
-
+import { isAuthenticated, user } from '@/services/auth'
 </script>
 
 <template>

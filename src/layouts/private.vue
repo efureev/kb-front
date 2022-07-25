@@ -3,10 +3,10 @@
     <div class="mt-5 mx-auto text-center opacity-25 text-sm">
       [Private Layout]
     </div>
-    <!--    <ClientOnly>-->
+    <!--    <ClientOnly> -->
     <Suspense>
       <router-view />
     </Suspense>
-    <!--    </ClientOnly>-->
+    <!--    </ClientOnly> -->
   </div>
 </template>

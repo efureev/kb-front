@@ -3,37 +3,37 @@ import { SUPPORTED_LOCALES } from './locales'
 const DEFAULT_FORMAT = {
   USD: {
     style: 'currency',
-    currency: 'USD'
+    currency: 'USD',
   },
   EUR: {
     style: 'currency',
-    currency: 'EUR'
+    currency: 'EUR',
   },
   CAD: {
     style: 'currency',
-    currency: 'CAD'
+    currency: 'CAD',
   },
   AUD: {
     style: 'currency',
-    currency: 'AUD'
+    currency: 'AUD',
   },
   SGD: {
     style: 'currency',
-    currency: 'SGD'
+    currency: 'SGD',
   },
   GBP: {
     style: 'currency',
-    currency: 'GBP'
+    currency: 'GBP',
   },
   decimal: {
-    style: 'decimal'
-  }
+    style: 'decimal',
+  },
 }
 
 export const NUMBER_FORMATS = Object.freeze({
   ...SUPPORTED_LOCALES.reduce(
     (acc, l) => ({ ...acc, [l]: DEFAULT_FORMAT }),
-    {}
-  )
+    {},
+  ),
   // Overwrite formats here for specific locales
 })

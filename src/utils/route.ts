@@ -17,9 +17,8 @@ export function withoutSuffix(string: string, suffix: string) {
 }
 
 export function createUrl(urlLike: string | URL | Location) {
-  if (typeof urlLike === 'string' && !(urlLike || '').includes('://')) {
-    urlLike = 'http://e.g' + withPrefix(urlLike, S)
-  }
+  if (typeof urlLike === 'string' && !(urlLike || '').includes('://'))
+    urlLike = `http://e.g${withPrefix(urlLike, S)}`
 
   return new URL(urlLike.toString())
 }
@@ -31,9 +30,8 @@ export function getFullPath(url: string | URL | Location, routeBase?: string) {
 
   if (routeBase) {
     routeBase = withSuffix(withPrefix(routeBase, S), S)
-    if (fullPath.indexOf(routeBase) === 0) {
+    if (fullPath.indexOf(routeBase) === 0)
       fullPath = withPrefix(fullPath.replace(routeBase, ''), S)
-    }
   }
 
   return fullPath

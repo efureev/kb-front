@@ -1,0 +1,5 @@
+import '@unocss/reset/tailwind.css'
+import '@/assets/styles/main.scss'
+import 'uno.css'
+import 'element-plus/theme-chalk/base.css'
+import 'element-plus/theme-chalk/dark/css-vars.css'

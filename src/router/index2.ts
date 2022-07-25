@@ -1,7 +1,7 @@
-import { createRouter, createWebHistory, createMemoryHistory } from 'vue-router';
+import { createMemoryHistory, createRouter, createWebHistory } from 'vue-router'
 
 export default function () {
-  const routerHistory = import.meta.env.SSR === false ? createWebHistory() : createMemoryHistory();
+  const routerHistory = import.meta.env.SSR === false ? createWebHistory() : createMemoryHistory()
 
   return createRouter({
     history: routerHistory,
@@ -9,23 +9,23 @@ export default function () {
       {
         path: '/',
         name: 'index',
-        component: () => import('@/views')
+        component: () => import('@/views'),
       },
       {
         path: '/user',
         name: 'user',
-        component: () => import('@/views/user.vue')
+        component: () => import('@/views/user.vue'),
       },
       {
         path: '/market',
         name: 'market',
-        component: () => import('@/views/market')
+        component: () => import('@/views/market'),
       },
       {
         path: '/profile',
         name: 'profile',
-        component: () => import('@/views/profile.vue')
-      }
-    ]
-  });
+        component: () => import('@/views/profile.vue'),
+      },
+    ],
+  })
 }

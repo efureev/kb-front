@@ -1,18 +1,18 @@
-import { UserContract } from './user'
+import type { Ref } from 'vue'
+import { watch } from 'vue'
+import type { UserContract } from './user'
 
-import { unsetAuth, setAuth, useAuthApi } from '@/services/auth'
-import { Ref, watch } from 'vue'
+import { setAuth, unsetAuth, useAuthApi } from '@/services/auth'
 
 interface AuthUserStatus {
-  status: string;
-  logged: boolean;
-  user?: UserContract;
+  status: string
+  logged: boolean
+  user?: UserContract
 }
 
 let checkUserOnceDone = false
 
-const checkUserStatus = (immediately: boolean = false) => {
-  console.log(`checkUserStatus`)
+const checkUserStatus = (immediately = false) => {
   const { loading, error, errorMessage, data, doRequest } = useAuthApi('status')
 
   if (!checkUserOnceDone || immediately) {
@@ -25,27 +25,25 @@ const checkUserStatus = (immediately: boolean = false) => {
     error,
     errorMessage,
     userStatus: data as Ref<AuthUserStatus>,
-    doRequest
+    doRequest,
   }
 }
 
-export const useAuth = (immediately: boolean = false) => {
+export const useAuth = (immediately = false) => {
   const { loading, error, errorMessage, userStatus } = checkUserStatus(immediately)
 
   watch([loading], () => {
-    if (error.value) {
+    if (error.value)
       unsetAuth(error.value)
-    }
 
-    if (userStatus.value.logged) {
+    if (userStatus.value.logged)
       setAuth(userStatus.value.user as UserContract)
-    }
   })
 
   return {
     loading,
     errorMessage,
-    userStatus
+    userStatus,
   }
 
   // const userStore = useUserStore()
@@ -66,12 +64,12 @@ export const useAuth = (immediately: boolean = false) => {
     userStore.setUser(payload)
     state.user = userStore.getUser()
     state.error = undefined
-  }*/
+  } */
 
   /* const logout = (): Promise<void> => {
      window.localStorage.removeItem(AUTH_KEY)
      return Promise.resolve((state.user = undefined) && userStore.clearUser())
-   }*/
+   } */
 
   /* return {
     authorize,

@@ -1,5 +1,5 @@
-type CookieRecord = {
-  [key: string]: string;
+interface CookieRecord {
+  [key: string]: string
 }
 
 export function getCookies(): CookieRecord {

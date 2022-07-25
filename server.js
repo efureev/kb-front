@@ -10,10 +10,10 @@ const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD
 const isProduction = process.env.NODE_ENV === 'production'
 
 async function createServer(root = process.cwd(), isProd = isProduction) {
-  const resolve = (p) => path.resolve(__dirname, p)
+  const resolve = p => path.resolve(__dirname, p)
   const indexProd = isProd ? fs.readFileSync(resolve('dist/client/index.html'), 'utf-8') : ''
 
-  // @ts-ignore
+  // @ts-expect-error
   const manifest = isProd ? require('./dist/client/ssr-manifest.json') : {}
 
   const app = express()
@@ -27,18 +27,19 @@ async function createServer(root = process.cwd(), isProd = isProduction) {
         middlewareMode: 'ssr',
         watch: {
           usePolling: true,
-          interval: 100
-        }
-      }
+          interval: 100,
+        },
+      },
     })
     // use vite's connect instance as middleware
     app.use(vite.middlewares)
-  } else {
+  }
+  else {
     app.use(require('compression')())
     app.use(
       require('serve-static')(resolve('dist/client'), {
-        index: false
-      })
+        index: false,
+      }),
     )
   }
 
@@ -48,13 +49,13 @@ async function createServer(root = process.cwd(), isProd = isProduction) {
       return {
         id: ++id,
         name,
-        price: Math.ceil(Math.random() * 100)
+        price: Math.ceil(Math.random() * 100),
       }
     })
     const data = {
       data: list,
       code: 0,
-      msg: ''
+      msg: '',
     }
     res.end(JSON.stringify(data))
   })
@@ -69,7 +70,8 @@ async function createServer(root = process.cwd(), isProd = isProduction) {
         template = fs.readFileSync(resolve('index.html'), 'utf-8')
         template = await vite.transformIndexHtml(url, template)
         render = (await vite.ssrLoadModule('/src/entry-server.mjs')).render
-      } else {
+      }
+      else {
         template = indexProd
         render = (await import('./dist/server/entry-server.mjs')).render
       }
@@ -81,16 +83,18 @@ async function createServer(root = process.cwd(), isProd = isProduction) {
       // console.log(bodyAttrs)
 
       const html = template
-        .replace(`data-html-attrs`, htmlAttrs)
-        .replace(`data-body-attrs`, bodyAttrs)
-        .replace(`<!--head-html-->`, headTags)
-        .replace(`<!--preload-links-->`, links)
-        .replace(`'<vuex-state>'`, state)
-        .replace(`<!--app-html-->`, appHtml)
+        .replace('data-html-attrs', htmlAttrs)
+        .replace('data-body-attrs', bodyAttrs)
+        .replace('<!--head-html-->', headTags)
+        .replace('<!--preload-links-->', links)
+        .replace('\'<vuex-state>\'', state)
+        .replace('<!--app-html-->', appHtml)
 
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
-    } catch (e) {
+    }
+    catch (e) {
       vite && vite.ssrFixStacktrace(e)
+      // eslint-disable-next-line no-console
       console.log(e.stack)
       res.status(500).end(e.stack)
     }
@@ -102,8 +106,9 @@ async function createServer(root = process.cwd(), isProd = isProduction) {
 if (!isTest) {
   createServer().then(({ app }) =>
     app.listen(8080, () => {
+      // eslint-disable-next-line no-console
       console.log('http://localhost:8080')
-    })
+    }),
   )
 }
 

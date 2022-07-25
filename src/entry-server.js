@@ -1,14 +1,13 @@
-import App from './app.vue'
 import { createSSRApp } from 'vue'
-import { isPromise } from './utils'
-import createRouter from './router'
 import { renderToString } from '@vue/server-renderer'
-import { renderHeadToString } from '@vueuse/head'
+import { createHead, renderHeadToString } from '@vueuse/head'
 import { createPinia } from 'pinia'
 import { ID_INJECTION_KEY } from 'element-plus'
 import { installI18n } from './i18n'
 import { getAppRouteCtx } from './utils/routeCtx'
-import { createHead } from '@vueuse/head'
+import createRouter from './router'
+import { isPromise } from './utils'
+import App from './app.vue'
 
 function renderPreloadLinks(modules, manifest) {
   let links = ''
@@ -28,13 +27,12 @@ function renderPreloadLinks(modules, manifest) {
 }
 
 function renderPreloadLink(file) {
-  if (file.endsWith('.js')) {
+  if (file.endsWith('.js'))
     return `<link rel="modulepreload" crossorigin href="${file}">`
-  } else if (file.endsWith('.css')) {
+  else if (file.endsWith('.css'))
     return `<link rel="stylesheet" href="${file}">`
-  } else {
+  else
     return ''
-  }
 }
 
 export async function render(url, manifest) {
@@ -49,8 +47,8 @@ export async function render(url, manifest) {
   app.use(head).use(router).use(store)
 
   app.provide(ID_INJECTION_KEY, {
-    prefix: `ssr-` + Math.floor(Math.random() * 1e4),
-    current: 0
+    prefix: `ssr-${Math.floor(Math.random() * 1e4)}`,
+    current: 0,
   })
 
   router.push(url)
@@ -59,11 +57,11 @@ export async function render(url, manifest) {
     await router.isReady()
     const to = router.currentRoute
     const matchedRoute = to.value.matched
-    if (to.value.matched.length === 0) {
+    if (to.value.matched.length === 0)
       return ''
-    }
+
     const matchedComponents = []
-    matchedRoute.map((route) => {
+    matchedRoute.forEach((route) => {
       matchedComponents.push(...Object.values(route.components))
     })
     const asyncDataFuncs = matchedComponents.map((component) => {
@@ -71,7 +69,7 @@ export async function render(url, manifest) {
       if (asyncData) {
         const config = {
           store,
-          route: to
+          route: to,
         }
         if (isPromise(asyncData) === false) {
           const result = asyncData(config)
@@ -79,16 +77,19 @@ export async function render(url, manifest) {
         }
         return asyncData(config)
       }
+      return null
     })
     await Promise.all(asyncDataFuncs)
     const ctx = {}
     const html = await renderToString(app, ctx)
     const { headTags, htmlAttrs, bodyAttrs } = renderHeadToString(head)
-    
+
     const preloadLinks = renderPreloadLinks(ctx.modules, manifest)
     const state = JSON.stringify(store.state.value)
     return [html, state, preloadLinks, { headTags, htmlAttrs, bodyAttrs }]
-  } catch (error) {
+  }
+  catch (error) {
+    // eslint-disable-next-line no-console
     console.log(error)
   }
 }

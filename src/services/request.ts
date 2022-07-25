@@ -1,4 +1,5 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
+import type { AxiosInstance, AxiosRequestConfig } from 'axios'
+import axios from 'axios'
 import { getCookies } from './utils/cookies'
 
 export const makeRequestOptions = (data: Record<string, any> = {}): RequestInit => {
@@ -6,13 +7,13 @@ export const makeRequestOptions = (data: Record<string, any> = {}): RequestInit 
   const cookies = getCookies()
   const token = cookies['XSRF-TOKEN']
 
-  if (cloneData.headers === undefined) {
+  if (cloneData.headers === undefined)
     cloneData.headers = {} as Record<string, string>
-  }
-  cloneData.headers['Accept'] = 'application/json'
-  if (token) {
+
+  cloneData.headers.Accept = 'application/json'
+  if (token)
     cloneData.headers['X-XSRF-TOKEN'] = token
-  }
+
   /*
 
     if (cloneData.baseURL == undefined) {

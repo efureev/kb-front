@@ -7,12 +7,12 @@ export default defineComponent({
     const isActive = ref(false)
 
     return () => (
-      <div class="index">
+      <div className="index">
 
         <ElSwitch v-model={isActive.value} active-color="#13ce66" inactive-color="#ff4949">
           switch
         </ElSwitch>
       </div>
     )
-  }
+  },
 })

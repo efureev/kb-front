@@ -1,20 +1,22 @@
-<template>
-  <div>
-    <h5 v-if="title">{{ title }}</h5>
-    <pre><slot></slot></pre>
-  </div>
-</template>
-
 <script>
 export default {
   props: {
     title: {
       type: String,
-      default: ''
-    }
-  }
+      default: '',
+    },
+  },
 }
 </script>
+
+<template>
+  <div>
+    <h5 v-if="title">
+      {{ title }}
+    </h5>
+    <pre><slot /></pre>
+  </div>
+</template>
 
 <style scoped>
 div {

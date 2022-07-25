@@ -1,4 +1,4 @@
-import { useAuthApi, authEndpoint } from '@/services/auth'
+import { authEndpoint, useAuthApi } from '@/services/auth'
 import { useAuth } from '@/services/auth/auth'
 
 export const useProviders = () => {
@@ -9,19 +9,18 @@ export const useProviders = () => {
   return {
     loading,
     errorMessage,
-    providers: data
+    providers: data,
   }
 }
 
 export const authorizeWithProvider = (prov: string) => {
   return new Promise((resolve, reject) => {
-    const url = window.location.href + '?close=true'
+    const url = `${window.location.href}?close=true`
     const eurl = encodeURIComponent(url)
     // http://id.kb.x/auth/github/login?id=auth-example&from=http%3A%2F%2Fkb.x%2F%3Fclose%3Dtrue
-    const win = window.open(authEndpoint + '/' + prov + '/login?id=auth-example&from=' + eurl)
-    if (!win) {
+    const win = window.open(`${authEndpoint}/${prov}/login?id=auth-example&from=${eurl}`)
+    if (!win)
       return reject(new Error('missing window'))
-    }
 
     const interval = setInterval(() => {
       try {
@@ -31,7 +30,7 @@ export const authorizeWithProvider = (prov: string) => {
           return
         }
 
-        if (win.location.search.indexOf('error') !== -1) {
+        if (win.location.search.includes('error')) {
           reject(new Error(win.location.search))
           win.close()
           clearInterval(interval)
@@ -43,7 +42,8 @@ export const authorizeWithProvider = (prov: string) => {
           win.close()
           clearInterval(interval)
         }
-      } catch (e) {
+      }
+      catch (e) {
       }
     }, 1000)
   })

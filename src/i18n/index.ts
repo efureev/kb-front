@@ -1,4 +1,4 @@
-import { App } from 'vue'
+import type { App } from 'vue'
 import { createI18n } from 'vue-i18n'
 import { DATE_FORMATS } from './date-formats'
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from './locales'
@@ -10,7 +10,7 @@ export {
   DEFAULT_LOCALE,
   SUPPORTED_LOCALES,
   SUPPORTED_LANGUAGES,
-  extractLocaleFromPath
+  extractLocaleFromPath,
 } from './locales'
 
 // This is a dynamic import so not all languages are bundled in frontend.
@@ -18,10 +18,10 @@ export {
 const messageImports = import.meta.glob('./translations/*.json')
 
 function importLocale(locale: string) {
-  const [, importLocale] =
-  Object.entries(messageImports).find(([key]) =>
-    key.includes(`/${locale}.`)
-  ) || []
+  const [, importLocale]
+    = Object.entries(messageImports).find(([key]) =>
+      key.includes(`/${locale}.`),
+    ) || []
 
   return importLocale && importLocale()
 }
@@ -33,17 +33,17 @@ export async function loadAsyncLanguage(i18n: any, locale = DEFAULT_LOCALE) {
       i18n.setLocaleMessage(locale, result.default || result)
       i18n.locale.value = locale
     }
-  } catch (error) {
+  }
+  catch (error) {
     console.error(error)
   }
 }
 
-export async function installI18n(app: App, locale: string = '') {
+export async function installI18n(app: App, locale = '') {
   // dd(`installI18n`, locale);
   locale = SUPPORTED_LOCALES.includes(locale) ? locale : DEFAULT_LOCALE
   const messages = await importLocale(locale)
   // console.log( `messages2`, messages2.default)
-  // console.log( `messages`, messages)
 
   const i18n = createI18n({
     legacy: false,
@@ -51,10 +51,10 @@ export async function installI18n(app: App, locale: string = '') {
     fallbackLocale: DEFAULT_LOCALE,
     // messages,
     messages: {
-      [locale]: messages?.default || messages
+      [locale]: messages?.default || messages,
     },
     datetimeFormats: DATE_FORMATS,
-    numberFormats: NUMBER_FORMATS
+    numberFormats: NUMBER_FORMATS,
   })
 
   app.use(i18n)

@@ -1,10 +1,10 @@
-import { Router } from 'vue-router'
+import type { Router } from 'vue-router'
+import type { Pinia } from 'pinia'
 import authMiddleware from './auth'
 import ssrMiddleware from './ssr'
-import { Pinia } from 'pinia'
 
 export default function installMiddleware(router: Router, store: Pinia) {
-  [authMiddleware].forEach(mdw => {
+  [authMiddleware].forEach((mdw) => {
     router.beforeEach(mdw())
   })
 

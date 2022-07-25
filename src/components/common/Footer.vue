@@ -30,14 +30,13 @@ const { t, locale } = useI18n()
 // import { getAppRouteCtx } from '@/utils/routeCtx'
 
 // const appRouteCtx = getAppRouteCtx(route.fullPath)
-
 </script>
 
 <template>
   <nav class="text-xl mt-6 space-x-2">
-    <!--    <div>URL: {{ appRouteCtx.url }}</div>-->
-    <!--    <div>Route: {{ appRouteCtx.route }}</div>-->
-    <!--    <div>Lang: {{ appRouteCtx.locale }}</div>-->
+    <!--    <div>URL: {{ appRouteCtx.url }}</div> -->
+    <!--    <div>Route: {{ appRouteCtx.route }}</div> -->
+    <!--    <div>Lang: {{ appRouteCtx.locale }}</div> -->
     <div>Lang (I18n): {{ locale }}</div>
     <router-link class="icon-btn" to="/" :title="t('button.home')">
       <icon-carbon-home />
@@ -51,7 +50,7 @@ const { t, locale } = useI18n()
             title="Library"
         >
           <carbon-star/>
-        </a>-->
+        </a> -->
     <!--
 
         <a class="icon-btn" :title="t('button.toggle_dark')" @click="toggleDark()">
@@ -92,6 +91,6 @@ const { t, locale } = useI18n()
            target="_blank"
            title="Template">
           <icon-carbon-logo-github />
-        </a>-->
+        </a> -->
   </nav>
 </template>

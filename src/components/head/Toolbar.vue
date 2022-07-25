@@ -1,9 +1,12 @@
+<script setup lang="ts">
+const { t } = useI18n()
+</script>
+
 <template>
   <div class="head-toolbar">
-    <!--    <HeadTimer class="head-toolbar-item" />-->
-
-    <div class="el-menu-item" @click="toggleDark()">
-      <div i="carbon-sun dark:carbon-moon"></div>
+    <!--    <HeadTimer class="head-toolbar-item" /> -->
+    <div class="el-menu-item" :title="t('button.toggle_dark')" @click="toggleDark()">
+      <div i="carbon-sun dark:carbon-moon" />
     </div>
     <HeadUserPanel />
   </div>
@@ -21,5 +24,4 @@
     padding: 2px 3px;
   }
 }
-
 </style>

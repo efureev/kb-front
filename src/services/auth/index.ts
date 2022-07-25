@@ -1,5 +1,5 @@
-import { AxiosRequestConfig } from 'axios'
-import { UserContract } from './user'
+import type { AxiosRequestConfig } from 'axios'
+import type { UserContract } from './user'
 import { createRequest } from '@/services/request'
 
 import { useApi } from '@/services/api'
@@ -9,15 +9,15 @@ export const authServicePrefix = 'auth'
 export const authEndpoint = `${authServiceHost.value}/${authServicePrefix}`
 
 interface AuthState {
-  authenticated: boolean;
-  user?: UserContract;
-  error?: Error;
+  authenticated: boolean
+  user?: UserContract
+  error?: Error
 }
 
 const state = reactive<AuthState>({
   authenticated: false,
   user: undefined,
-  error: undefined
+  error: undefined,
 })
 
 export const unsetAuth = (error?: Error) => {
@@ -37,9 +37,8 @@ export const user = computed<UserContract | undefined>(() => state.user)
 export const isAuthenticated = computed<boolean>(() => state.authenticated)
 
 export const api = (data: AxiosRequestConfig = {}) => {
-  if (!data.baseURL) {
+  if (!data.baseURL)
     data.baseURL = authServiceHost.value
-  }
 
   return createRequest(data)
 }

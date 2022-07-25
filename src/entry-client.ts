@@ -1,11 +1,11 @@
-import App from './app.vue'
-import '@/assets/css/index.css'
-import setGlobalHelpers from '@/utils/global.helpers'
 import { createApp } from 'vue'
-import createRouter from './router'
 import { createPinia } from 'pinia'
-import { installI18n } from '@/i18n'
 import { createHead } from '@vueuse/head'
+import App from './app.vue'
+// import '@/assets/css/index.css'
+import createRouter from './router'
+import setGlobalHelpers from '@/utils/global.helpers'
+import { installI18n } from '@/i18n'
 import { getAppRouteCtx } from '@/utils/routeCtx'
 import { useAuth } from '@/services/auth/auth'
 
@@ -28,9 +28,8 @@ const head = createHead()
 
 app.use(head).use(router).use(store)
 
-if (window.__INITIAL_STATE__) {
+if (window.__INITIAL_STATE__)
   store.state.value = window.__INITIAL_STATE__
-}
 
 router.isReady().then(() => {
   useAuth()

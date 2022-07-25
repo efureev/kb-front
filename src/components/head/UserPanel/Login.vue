@@ -1,10 +1,9 @@
 <script setup lang="ts">
-
 const dialogFormVisible = ref(false)
 </script>
 
 <template>
-  <div class="el-menu-item" @click="dialogFormVisible=true">
+  <div class="el-menu-item" @click="dialogFormVisible = true">
     <icon-carbon-login />
   </div>
 

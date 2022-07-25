@@ -5,7 +5,7 @@
 - True on-demand compilation
 - Use `vue3 vite3.0 typescript eslint SSR pinia unocss vue-router element-plus scss`
 
-Forked from `https://github.com/vok123/vue3-ts-vite-ssr-starter.git`
+Forked from `https://github.com/vok123/vue3-ts-vite-ssr-starter`
 
 # Getting Started
 
