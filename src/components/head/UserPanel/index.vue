@@ -5,6 +5,6 @@ import { isAuthenticated, user } from '@/services/auth'
 </script>
 
 <template>
-  <info v-if="isAuthenticated" :user="user" />
-  <login v-else />
+  <Info v-if="isAuthenticated" :user="user" />
+  <Login v-else />
 </template>

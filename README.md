@@ -7,7 +7,7 @@
 
 Forked from `https://github.com/vok123/vue3-ts-vite-ssr-starter`
 
-# Getting Started
+## Getting Started
 
 - run in SPA serving mode
 
@@ -29,3 +29,10 @@ yarn preview
 yarn install
 yarn build
 ```
+
+## Codebase to review
+- `https://github.com/vbenjs/vue-vben-admin/tree/main`
+- `https://github.com/helixsoftco/vuelix/blob/main/src/auth/plugin.ts`
+- `https://github.com/feat-agency/vite-plugin-webfont-dl`
+- `https://github.com/EverSeenTOTOTO/browser-app-boilerplate/tree/vue-vite-ssr`
+- `https://github.com/developer-plus/vue-hbs-admin`

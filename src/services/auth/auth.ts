@@ -36,7 +36,7 @@ export const useAuth = (immediately = false) => {
     if (error.value)
       unsetAuth(error.value)
 
-    if (userStatus.value.logged)
+    else if (userStatus.value.logged)
       setAuth(userStatus.value.user as UserContract)
   })
 

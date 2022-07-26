@@ -4,7 +4,7 @@
   "description": "Use vue3 vite typescript eslint SSR vuex vue-router element-plus scss",
   "author": "vok123",
   "scripts": {
-    "dev:spa": "vite --port 1337 --force",
+    "dev:spa": "vite --force",
     "dev": "node server",
     "build": "yarn build:client && yarn build:server",
     "build:client": "vite build --ssrManifest --outDir dist/client",
@@ -19,6 +19,7 @@
     "@vueuse/core": "^8.9.4",
     "@vueuse/head": "^0.7.7",
     "axios": "^0.27.2",
+    "dayjs": "^1.11.4",
     "element-plus": "^2.2.10",
     "pinia": "^2.0.16",
     "vue": "^3.2.37",
@@ -45,6 +46,7 @@
     "eslint": "^8.20.0",
     "eslint-plugin-vue": "^9.2.0",
     "express": "^4.18.1",
+    "mockjs": "^1.1.0",
     "rollup": "^2.77.0",
     "rollup-plugin-visualizer": "^5.7.1",
     "sass": "^1.54.0",
@@ -57,6 +59,8 @@
     "vite-plugin-eslint": "^1.7.0",
     "vite-plugin-inspect": "^0.6.0",
     "vite-plugin-md": "^0.19.7",
+    "vite-plugin-mkcert": "^1.9.0",
+    "vite-plugin-mock": "^2.9.6",
     "vite-plugin-pages": "^0.25.0",
     "vite-plugin-vue-layouts": "^0.6.0",
     "vue-eslint-parser": "^9.0.3"

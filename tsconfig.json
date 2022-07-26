@@ -18,6 +18,7 @@
       "vite-plugin-vue-layouts/client",
       "element-plus/global",
       "./src/@types/*",
+      "./types/*",
       "@feugene/mu"
     ],
     "typeRoots": [
@@ -26,7 +27,14 @@
     "paths": {
       "@/*": [
         "src/*"
+      ],
+      "#/*": [
+        "types/*"
       ]
     }
-  }
+  },
+  "exclude": [
+    "dist",
+    "node_modules"
+  ]
 }
