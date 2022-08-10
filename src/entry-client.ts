@@ -1,5 +1,4 @@
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
 import { createHead } from '@vueuse/head'
 import App from './app.vue'
 // import '@/assets/css/index.css'
@@ -8,6 +7,7 @@ import setGlobalHelpers from '@/utils/global.helpers'
 import { installI18n } from '@/i18n'
 import { getAppRouteCtx } from '@/utils/routeCtx'
 import { useAuth } from '@/services/auth/auth'
+import { setupStore } from '@/store'
 
 // import '@unocss/reset/tailwind.css'
 // import './styles/main.css'
@@ -18,10 +18,10 @@ setGlobalHelpers()
 
 const routeCtx = getAppRouteCtx(new URL(window.location.href))
 
-const store = createPinia()
+const app = createApp(App)
+const store = setupStore(app)
 const router = createRouter(store, routeCtx.route)
 
-const app = createApp(App)
 await installI18n(app, routeCtx.locale)
 
 const head = createHead()

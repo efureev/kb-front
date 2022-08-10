@@ -1,9 +1,9 @@
 import { createSSRApp } from 'vue'
 import { renderToString } from '@vue/server-renderer'
 import { createHead, renderHeadToString } from '@vueuse/head'
-import { createPinia } from 'pinia'
 import { ID_INJECTION_KEY } from 'element-plus'
 import { installI18n } from './i18n'
+import { setupStore } from './store'
 import { getAppRouteCtx } from './utils/routeCtx'
 import createRouter from './router'
 import { isPromise } from './utils'
@@ -37,10 +37,11 @@ function renderPreloadLink(file) {
 
 export async function render(url, manifest) {
   const routeCtx = getAppRouteCtx(url)
-  const store = createPinia()
-  const router = createRouter(store, routeCtx.route)
 
   const app = createSSRApp(App)
+  const store = setupStore(app)
+  const router = createRouter(store, routeCtx.route)
+
   await installI18n(app, routeCtx.locale)
   const head = createHead()
 
@@ -87,8 +88,7 @@ export async function render(url, manifest) {
     const preloadLinks = renderPreloadLinks(ctx.modules, manifest)
     const state = JSON.stringify(store.state.value)
     return [html, state, preloadLinks, { headTags, htmlAttrs, bodyAttrs }]
-  }
-  catch (error) {
+  } catch (error) {
     // eslint-disable-next-line no-console
     console.log(error)
   }
