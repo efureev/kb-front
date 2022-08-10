@@ -13,7 +13,8 @@
   },
   "menu": {
     "Home": "Home",
-    "Admin": "Admin"
+    "Admin": "Admin",
+    "Space": "Space"
   },
   "pages": {
     "private": "Private",

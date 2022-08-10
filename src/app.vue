@@ -27,17 +27,11 @@ export default defineComponent({
 
 <template>
   <el-container>
+    <AlertManagerView />
     <el-header>
       <head-menu />
     </el-header>
-    <el-main>
-      <router-view />
-      <!--    <router-view v-slot="{ Component }"> -->
-      <!--      <Suspense> -->
-      <!--        <component :is="Component"/> -->
-      <!--      </Suspense> -->
-      <!--    </router-view> -->
-    </el-main>
+    <router-view />
     <el-footer>
       <CommonFooter />
     </el-footer>

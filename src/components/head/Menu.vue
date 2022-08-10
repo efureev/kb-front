@@ -14,13 +14,22 @@ const handleSelect = (key: string) => {
 </script>
 
 <template>
-  <el-menu router :default-active="$route.path" mode="horizontal" menu-trigger="click" @select="handleSelect">
+  <el-menu
+    router
+    :default-active="$route.path"
+    mode="horizontal"
+    menu-trigger="click"
+    @select="handleSelect"
+  >
     <div class="menu-logo">
       <icon-carbon-license-global style="font-size: 2em; " />
     </div>
 
     <el-menu-item index="/">
       {{ t('menu.Home') }}
+    </el-menu-item>
+    <el-menu-item index="/space">
+      {{ t('menu.Space') }}
     </el-menu-item>
     <el-menu-item index="/admin">
       {{ t('menu.Admin') }}
@@ -54,7 +63,10 @@ const handleSelect = (key: string) => {
         </el-menu-item>
       </el-sub-menu>
     </el-sub-menu>
-    <el-menu-item index="3" disabled>
+    <el-menu-item
+      index="3"
+      disabled
+    >
       Info
     </el-menu-item>
     <el-menu-item index="4">
@@ -67,11 +79,11 @@ const handleSelect = (key: string) => {
 
 <style>
 .menu-logo {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  /*margin: 0 0 0 10px;*/
-  line-height: var(--el-menu-item-height);
-  font-size: var(--el-menu-item-font-size);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /*margin: 0 0 0 10px;*/
+    line-height: var(--el-menu-item-height);
+    font-size: var(--el-menu-item-font-size);
 }
 </style>

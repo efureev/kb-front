@@ -13,7 +13,8 @@
   },
   "menu": {
     "Home": "Главная",
-    "Admin": "Админка"
+    "Admin": "Админка",
+    "Space": "Пространство"
   },
   "pages": {
     "private": "Private",

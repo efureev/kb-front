@@ -81,7 +81,7 @@ const { t, locale } = useI18n()
       <icon-carbon-dicom-overlay />
     </router-link>
 
-    <router-link class="icon-btn" to="/private" :title="t('pages.private')">
+    <router-link class="icon-btn" to="/space" :title="t('menu.Space')">
       <icon-carbon-virtual-private-cloud />
     </router-link>
     <!--

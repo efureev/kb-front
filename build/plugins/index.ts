@@ -1,7 +1,7 @@
 import type { PluginOption } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Unocss from 'unocss/vite'
-import { splitVendorChunkPlugin } from 'vite'
+// import { splitVendorChunkPlugin } from 'vite'
 import setupIcons from './icons'
 import setupAutoImport from './auto-import'
 import setupVueComponents from './vue-components'
@@ -11,7 +11,7 @@ import setupDevPlugins from './setupDevPlugins'
 export default function setupVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   const vitePlugins: (PluginOption | PluginOption[])[] = [
     vue({ reactivityTransform: true }),
-    splitVendorChunkPlugin(),
+    // splitVendorChunkPlugin(),
     Unocss(),
   ]
 

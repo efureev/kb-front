@@ -7,7 +7,10 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AlertManagerView: typeof import('./../src/components/AlertManager/View.vue')['default']
     CommonFooter: typeof import('./../src/components/common/Footer.vue')['default']
+    ElAlert: typeof import('element-plus/lib')['ElAlert']
+    ElAside: typeof import('element-plus/lib')['ElAside']
     ElAvatar: typeof import('element-plus/lib')['ElAvatar']
     ElContainer: typeof import('element-plus/lib')['ElContainer']
     ElDialog: typeof import('element-plus/lib')['ElDialog']

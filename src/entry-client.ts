@@ -34,4 +34,6 @@ if (window.__INITIAL_STATE__)
 router.isReady().then(() => {
   useAuth()
   app.mount('#app', true)
+  // const { alertSuccess } = useAlert()
+  // alertSuccess('App loaded')
 })
