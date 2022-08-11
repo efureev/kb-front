@@ -1,13 +1,15 @@
 <script lang="ts">
 import type { PropType } from 'vue'
-import type { UserContract } from '@/services/auth/user'
-import { logout } from '@/services/auth'
-import { DEFAULT_LOCALE, SUPPORTED_LANGUAGES } from '@/i18n/index'
+// import type { UserContract } from '@/services/auth/user'
+// import { logout } from '@/services/auth'
+import { useUserStore } from '@/store/modules/user'
+import { DEFAULT_LOCALE, SUPPORTED_LANGUAGES } from '@/i18n'
+import type { UserInfo } from '#/store'
 
 export default defineComponent({
   props: {
     user: {
-      type: Object as PropType<UserContract>,
+      type: Object as PropType<UserInfo>,
       required: true,
     },
   },
@@ -23,7 +25,7 @@ export default defineComponent({
     })
 
     return {
-      logout,
+      logout: useUserStore().logout,
       locale,
       locales: SUPPORTED_LANGUAGES,
       newLocale,
@@ -33,17 +35,35 @@ export default defineComponent({
 </script>
 
 <template>
-  <el-sub-menu index="31" class="user">
+  <el-sub-menu
+    index="31"
+    class="user"
+  >
     <template #title>
-      <el-avatar shape="square" :size="42" :src="user.picture" />
+      <el-avatar
+        shape="square"
+        :size="42"
+        :src="user.picture"
+      />
     </template>
     <div class="el-menu-item justify-center">
-      <el-radio-group v-model="newLocale" size="small">
-        <el-radio-button v-for="lang in locales" :key="lang.locale" :title="lang.name" :label="lang.locale" />
+      <el-radio-group
+        v-model="newLocale"
+        size="small"
+      >
+        <el-radio-button
+          v-for="lang in locales"
+          :key="lang.locale"
+          :title="lang.name"
+          :label="lang.locale"
+        />
       </el-radio-group>
     </div>
     <hr style="margin: 10px 0; color: var(--el-border-color);">
-    <div class="el-menu-item" @click="logout">
+    <div
+      class="el-menu-item"
+      @click="logout"
+    >
       <icon-carbon-logout />
       Logout
     </div>

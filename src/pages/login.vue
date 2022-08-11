@@ -6,11 +6,6 @@ const { t } = useI18n()
 
 <template>
   <div>
-    {{ t('pages.login') }}
-    <!--    <provider-links/> -->
+    <HeadUserPanelProviderLinks />
   </div>
 </template>
-
-<route>
-{ meta: { layout: "private" } }
-</route>

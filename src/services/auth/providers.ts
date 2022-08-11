@@ -1,3 +1,4 @@
+/*
 import { authEndpoint, useAuthApi } from '@/services/auth'
 import { useAuth } from '@/services/auth/auth'
 
@@ -52,3 +53,4 @@ export const authorizeWithProvider = (prov: string) => {
 export const loginWithProvider = (prov: string) => {
   return authorizeWithProvider(prov).then(useAuth)
 }
+*/

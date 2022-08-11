@@ -1,8 +1,9 @@
+/*
 import type { AxiosRequestConfig } from 'axios'
-import type { UserContract } from './user'
-import { createRequest } from '@/services/request'
+// import type { UserContract } from './user'
+// import { createRequest } from '@/services/request'
 
-import { useApi } from '@/services/api'
+// import { useApi } from '@/services/api'
 
 export const authServiceHost = computed<string>(() => import.meta.env.VITE_SERVICE_AUTH_URL)
 export const authServicePrefix = 'auth'
@@ -10,7 +11,7 @@ export const authEndpoint = `${authServiceHost.value}/${authServicePrefix}`
 
 interface AuthState {
   authenticated: boolean
-  user?: UserContract
+  // user?: UserContract
   error?: Error
 }
 
@@ -53,3 +54,4 @@ export const logout = (): void => {
   const { doRequest } = useAuthApi('logout')
   doRequest()
 }
+*/

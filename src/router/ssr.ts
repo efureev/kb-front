@@ -1,9 +1,9 @@
 import type { NavigationGuardNext, RouteLocationNormalized, Router } from 'vue-router'
 // import { AppCxt } from "~/types"
-import type { Pinia } from 'pinia'
 import { isPromise } from '@/utils'
+import { store } from '@/store'
 
-export default (router: Router, store: Pinia) =>
+export default (router: Router) =>
   (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
     let diffed = false
 

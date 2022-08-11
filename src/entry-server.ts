@@ -2,20 +2,22 @@ import { createSSRApp } from 'vue'
 import { renderToString } from '@vue/server-renderer'
 import { createHead, renderHeadToString } from '@vueuse/head'
 import { ID_INJECTION_KEY } from 'element-plus'
+import type { RouteComponent } from 'vue-router'
 import { installI18n } from './i18n'
 import { setupStore } from './store'
 import { getAppRouteCtx } from './utils/routeCtx'
-import createRouter from './router'
+import { createRouterInstance } from './router'
 import { isPromise } from './utils'
 import App from './app.vue'
+import type { ServerCtx } from '#/server'
 
-function renderPreloadLinks(modules, manifest) {
+function renderPreloadLinks(modules: Set<string>, manifest: Record<string, string[]>) {
   let links = ''
   const seen = new Set()
-  modules.forEach((id) => {
+  modules.forEach((id: string) => {
     const files = manifest[id]
     if (files) {
-      files.forEach((file) => {
+      files.forEach((file: string) => {
         if (!seen.has(file)) {
           seen.add(file)
           links += renderPreloadLink(file)
@@ -26,7 +28,7 @@ function renderPreloadLinks(modules, manifest) {
   return links
 }
 
-function renderPreloadLink(file) {
+function renderPreloadLink(file: string): string {
   if (file.endsWith('.js'))
     return `<link rel="modulepreload" crossorigin href="${file}">`
   else if (file.endsWith('.css'))
@@ -35,12 +37,12 @@ function renderPreloadLink(file) {
     return ''
 }
 
-export async function render(url, manifest) {
+export async function render(url: string, manifest: Record<string, string[]>) {
   const routeCtx = getAppRouteCtx(url)
 
   const app = createSSRApp(App)
   const store = setupStore(app)
-  const router = createRouter(store, routeCtx.route)
+  const router = createRouterInstance(routeCtx.route)
 
   await installI18n(app, routeCtx.locale)
   const head = createHead()
@@ -61,7 +63,7 @@ export async function render(url, manifest) {
     if (to.value.matched.length === 0)
       return ''
 
-    const matchedComponents = []
+    const matchedComponents: Record<string, RouteComponent>[] = []
     matchedRoute.forEach((route) => {
       matchedComponents.push(...Object.values(route.components))
     })
@@ -72,7 +74,7 @@ export async function render(url, manifest) {
           store,
           route: to,
         }
-        if (isPromise(asyncData) === false) {
+        if (!isPromise(asyncData)) {
           const result = asyncData(config)
           return Promise.resolve(result)
         }
@@ -80,15 +82,17 @@ export async function render(url, manifest) {
       }
       return null
     })
-    await Promise.all(asyncDataFuncs)
-    const ctx = {}
-    const html = await renderToString(app, ctx)
-    const { headTags, htmlAttrs, bodyAttrs } = renderHeadToString(head)
 
+    await Promise.all(asyncDataFuncs)
+    const ctx: ServerCtx = { modules: new Set() }
+    const html = await renderToString(app, ctx)
+
+    const { headTags, htmlAttrs, bodyAttrs } = renderHeadToString(head)
     const preloadLinks = renderPreloadLinks(ctx.modules, manifest)
     const state = JSON.stringify(store.state.value)
     return [html, state, preloadLinks, { headTags, htmlAttrs, bodyAttrs }]
-  } catch (error) {
+  }
+  catch (error) {
     // eslint-disable-next-line no-console
     console.log(error)
   }

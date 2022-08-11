@@ -8,7 +8,7 @@
     "dev": "node server",
     "build": "yarn build:client && yarn build:server",
     "build:client": "vite build --ssrManifest --outDir dist/client",
-    "build:server": "vite build --ssr src/entry-server.js --outDir dist/server",
+    "build:server": "vite build --ssr src/entry-server.ts --outDir dist/server",
     "serve": "cross-env NODE_ENV=production node server",
     "preview": "yarn build && yarn serve",
     "lint": "eslint --ext .js,.vue,.ts .",

@@ -62,7 +62,7 @@ export default ({ command, mode }: ConfigEnv) => {
     server: {
       // Listening on all local IPs
       host: true,
-      open: true,
+      // open: true,
       port: VITE_PORT,
       // Load proxy configuration from .env
       // proxy: createProxy(VITE_PROXY),
@@ -80,7 +80,8 @@ export default ({ command, mode }: ConfigEnv) => {
   if (isProd) {
     config.build = {
       target: 'esnext',
-      minify: 'esbuild',
+      minify: false,
+      // minify: 'esbuild',
       manifest: true,
     }
   }
@@ -91,7 +92,8 @@ export default ({ command, mode }: ConfigEnv) => {
         'vue',
         'vue-router',
         '@vueuse/core',
-        '@iconify/iconify',
+        '@vue/shared',
+        // '@iconify/iconify',
       ],
       exclude: [
         // 'vue-demi'

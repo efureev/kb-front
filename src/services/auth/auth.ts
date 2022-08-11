@@ -1,3 +1,4 @@
+/*
 import type { Ref } from 'vue'
 import { watch } from 'vue'
 import type { UserContract } from './user'
@@ -48,15 +49,15 @@ export const useAuth = (immediately = false) => {
 
   // const userStore = useUserStore()
 
-  /* const authorize = (): void => {
+  /!* const authorize = (): void => {
      post()
        .then(() => {
          setUser(data.value, payload.rememberMe);
          router.push({name: "private"});
        });
    }
- */
-  /* const setUser = (payload: User, remember: boolean): void => {
+ *!/
+  /!* const setUser = (payload: User, remember: boolean): void => {
     if (remember) {
       window.localStorage.setItem(AUTH_KEY, payload[AUTH_TOKEN])
     }
@@ -64,18 +65,19 @@ export const useAuth = (immediately = false) => {
     userStore.setUser(payload)
     state.user = userStore.getUser()
     state.error = undefined
-  } */
+  } *!/
 
-  /* const logout = (): Promise<void> => {
+  /!* const logout = (): Promise<void> => {
      window.localStorage.removeItem(AUTH_KEY)
      return Promise.resolve((state.user = undefined) && userStore.clearUser())
-   } */
+   } *!/
 
-  /* return {
+  /!* return {
     authorize,
     setUser,
     logout,
     ...toRefs(state),
   }
-*/
+*!/
 }
+*/

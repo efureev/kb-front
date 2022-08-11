@@ -1,8 +1,8 @@
 // import { useRouter } from 'vue-router'
 // import { useAuth, AUTH_TOKEN } from './auth'
-import toQueryString from '@feugene/mu/src/object/toQueryString.js'
+import toQueryString from '@feugene/mu/src/object/toQueryString'
 import type { AxiosInstance } from 'axios'
-import { createRequest } from './request'
+import { createAxiosAuthRequest, createAxiosRequest } from './request'
 
 /*
 
@@ -13,19 +13,16 @@ export const useApiWithAuth = (endpoint: string) => {
 }
 */
 
-export const useApi = (endpoint: string, api?: AxiosInstance) => {
-  if (api === undefined)
-    api = createRequest()
-
+export const useApi = (endpoint: string, axiosInstance: AxiosInstance = createAxiosRequest()) => {
   const data = ref()
   const loading = ref<boolean>(false)
   const error = ref<Error | undefined>()
 
-  const postRequest = (payload?: Record<string, any>) => {
+  const doPostRequest = (payload?: Record<string, any>) => {
     loading.value = true
     error.value = undefined
 
-    return api && api.post(endpoint, payload, { withCredentials: true })
+    return axiosInstance.post(endpoint, payload, { withCredentials: true })
       .then((res: any) => {
         data.value = res.data
       })
@@ -37,7 +34,7 @@ export const useApi = (endpoint: string, api?: AxiosInstance) => {
       .finally(() => loading.value = false)
   }
 
-  const doRequest = (query?: Record<string, any>) => {
+  const doGetRequest = <T>(query?: Record<string, any>): Promise<T> => {
     loading.value = true
     error.value = undefined
 
@@ -61,7 +58,7 @@ export const useApi = (endpoint: string, api?: AxiosInstance) => {
           .finally(() => loading.value = false)
         */
 
-    return api && api.get(endpoint + queryString, { withCredentials: true })
+    return axiosInstance.get(endpoint + queryString, { withCredentials: true })
       .then((res: any) => data.value = res.data)
       .catch((e: Error) => {
         error.value = e
@@ -144,12 +141,16 @@ export const useApi = (endpoint: string, api?: AxiosInstance) => {
     data,
     error,
     // get,
-    postRequest,
-    doRequest,
+    doPostRequest,
+    doGetRequest,
     // del,
     errorMessage,
     // errorDetails,
     // errorFields,
     // computedClasses,
   }
+}
+
+export const useApiWithAuth = (endpoint: string, axiosInstance: AxiosInstance = createAxiosAuthRequest()) => {
+  return useApi(endpoint, axiosInstance)
 }

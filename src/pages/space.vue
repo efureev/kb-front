@@ -6,6 +6,7 @@
 
 <template>
   <div>
+    <h3>Открыто всем!</h3>
     <icon-carbon-campsite class-name="inline-block" />
   </div>
 </template>
