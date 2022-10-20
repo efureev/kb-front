@@ -4,15 +4,23 @@ import { store } from '@/store'
 
 interface MenuItem {
   label: string
-  url: string
+  url?: string
+  index?: string
+  private?: true
+  disabled?: true
+}
+
+interface MenuItemGroup {
+  label: string
   private: boolean
+  index: string
+  items: MenuItem[]
 }
 
 export const usePrivateMenuStore = defineStore('app-menu-private', () => {
-  const items: MenuItem[] = [{
+  const items: (MenuItem | MenuItemGroup)[] = [{
     label: 'Home',
     url: '/',
-    private: false,
   }, {
     label: 'Profile',
     url: '/profile',
@@ -25,6 +33,22 @@ export const usePrivateMenuStore = defineStore('app-menu-private', () => {
     label: 'Admin',
     url: '/admin',
     private: true,
+  }, {
+    label: 'Workspace',
+    index: '2',
+    items: [
+      {
+        label: 'item one',
+        index: '2-1',
+      }, {
+        label: 'item two',
+        index: '2-2',
+      },
+    ],
+  }, {
+    label: 'Status',
+    url: '/status',
+    disabled: true,
   }]
 
   const user = useUserStore()

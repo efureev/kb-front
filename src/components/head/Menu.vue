@@ -1,5 +1,6 @@
 <script lang="ts"
-  setup>
+  setup
+>
 import { usePrivateMenuStore } from '@/store/modules/menu'
 
 const { t } = useI18n()
@@ -18,56 +19,46 @@ const menuStore = usePrivateMenuStore()
 </script>
 
 <template>
-  <el-menu router
+  <el-menu
+    router
     :default-active="$route.path"
     mode="horizontal"
     menu-trigger="click"
-    @select="handleSelect">
+    @select="handleSelect"
+  >
     <div class="menu-logo">
       <icon-carbon-license-global style="font-size: 2em; " />
     </div>
 
-    <el-menu-item v-for="(menuItem, index) in menuStore.menuList"
-      :key="index"
-      :index="menuItem.url">
-      {{ t(`menu.${menuItem.label}`) }}
-    </el-menu-item>
-
-    <el-sub-menu index="2">
-      <template #title>
-        Workspace
-      </template>
-      <el-menu-item index="2-1">
-        item one
+    <template
+      v-for="(menuItem, idx) in menuStore.menuList"
+      :key="idx"
+    >
+      <el-menu-item
+        v-if="menuItem.url"
+        :index="menuItem.url"
+        :disabled="menuItem.disabled"
+      >
+        {{ t(`menu.${menuItem.label}`) }}
       </el-menu-item>
-      <el-menu-item index="2-2">
-        item two
-      </el-menu-item>
-      <el-menu-item index="2-3">
-        item three
-      </el-menu-item>
-      <el-sub-menu index="2-4">
+      <el-sub-menu
+        v-else-if="menuItem.index"
+        :index="menuItem.index"
+        :disabled="menuItem.disabled"
+      >
         <template #title>
-          item four
+          {{ t(`menu.${menuItem.label}`) }}
         </template>
-        <el-menu-item index="2-4-1">
-          item one
-        </el-menu-item>
-        <el-menu-item index="2-4-2">
-          item two
-        </el-menu-item>
-        <el-menu-item index="2-4-3">
-          item three
+        <el-menu-item
+          v-for="(submenuItem, sidx) in menuItem.items"
+          :key="sidx"
+          :index="submenuItem.index"
+          :disabled="menuItem.disabled"
+        >
+          {{ t(`menu.${submenuItem.label}`) }}
         </el-menu-item>
       </el-sub-menu>
-    </el-sub-menu>
-    <el-menu-item index="3"
-      disabled>
-      Info
-    </el-menu-item>
-    <el-menu-item index="4">
-      Orders
-    </el-menu-item>
+    </template>
 
     <HeadToolbar style="margin-left: auto" />
   </el-menu>
