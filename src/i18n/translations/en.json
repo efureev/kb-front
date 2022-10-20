@@ -14,7 +14,8 @@
   "menu": {
     "Home": "Home",
     "Admin": "Admin",
-    "Space": "Space"
+    "Space": "Space",
+    "Profile": "Profile"
   },
   "pages": {
     "private": "Private",

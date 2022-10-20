@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import { createHead } from '@vueuse/head'
+import { isString } from '@feugene/mu'
 import App from './app.vue'
 // import '@/assets/css/index.css'
 import { createRouterInstance } from './router'
@@ -28,8 +29,10 @@ const head = createHead()
 
 app.use(head).use(router).use(store)
 
-if (window.__INITIAL_STATE__)
-  store.state.value = window.__INITIAL_STATE__
+if (window.__INITIAL_STATE__) {
+  if (!isString(window.__INITIAL_STATE__))
+    store.state.value = window.__INITIAL_STATE__
+}
 
 router.isReady().then(() => {
   // useAuth()

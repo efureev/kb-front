@@ -14,7 +14,8 @@
   "menu": {
     "Home": "Главная",
     "Admin": "Админка",
-    "Space": "Пространство"
+    "Space": "Пространство",
+    "Profile": "Профиль"
   },
   "pages": {
     "private": "Private",

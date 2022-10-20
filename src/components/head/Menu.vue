@@ -1,4 +1,7 @@
-<script lang="ts" setup>
+<script lang="ts"
+  setup>
+import { usePrivateMenuStore } from '@/store/modules/menu'
+
 const { t } = useI18n()
 const router = useRouter()
 // import { ClientOnly } from 'vite-ssr'
@@ -11,28 +14,23 @@ const handleSelect = (key: string) => {
   // console.log(router)
   router.push(key)
 }
+const menuStore = usePrivateMenuStore()
 </script>
 
 <template>
-  <el-menu
-    router
+  <el-menu router
     :default-active="$route.path"
     mode="horizontal"
     menu-trigger="click"
-    @select="handleSelect"
-  >
+    @select="handleSelect">
     <div class="menu-logo">
       <icon-carbon-license-global style="font-size: 2em; " />
     </div>
 
-    <el-menu-item index="/">
-      {{ t('menu.Home') }}
-    </el-menu-item>
-    <el-menu-item index="/space">
-      {{ t('menu.Space') }}
-    </el-menu-item>
-    <el-menu-item index="/admin">
-      {{ t('menu.Admin') }}
+    <el-menu-item v-for="(menuItem, index) in menuStore.menuList"
+      :key="index"
+      :index="menuItem.url">
+      {{ t(`menu.${menuItem.label}`) }}
     </el-menu-item>
 
     <el-sub-menu index="2">
@@ -63,10 +61,8 @@ const handleSelect = (key: string) => {
         </el-menu-item>
       </el-sub-menu>
     </el-sub-menu>
-    <el-menu-item
-      index="3"
-      disabled
-    >
+    <el-menu-item index="3"
+      disabled>
       Info
     </el-menu-item>
     <el-menu-item index="4">
