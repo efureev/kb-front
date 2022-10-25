@@ -7,6 +7,8 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    ActionMessage: typeof import('./../src/components/ActionMessage.vue')['default']
+    ActionSection: typeof import('./../src/components/ActionSection.vue')['default']
     AlertManagerView: typeof import('./../src/components/AlertManager/View.vue')['default']
     CommonFooter: typeof import('./../src/components/common/Footer.vue')['default']
     ElAlert: typeof import('element-plus/lib')['ElAlert']
@@ -15,6 +17,7 @@ declare module '@vue/runtime-core' {
     ElDescriptions: typeof import('element-plus/lib')['ElDescriptions']
     ElDescriptionsItem: typeof import('element-plus/lib')['ElDescriptionsItem']
     ElDialog: typeof import('element-plus/lib')['ElDialog']
+    ElDivider: typeof import('element-plus/lib')['ElDivider']
     ElFooter: typeof import('element-plus/lib')['ElFooter']
     ElHeader: typeof import('element-plus/lib')['ElHeader']
     ElImage: typeof import('element-plus/lib')['ElImage']
@@ -24,6 +27,7 @@ declare module '@vue/runtime-core' {
     ElRadioButton: typeof import('element-plus/lib')['ElRadioButton']
     ElRadioGroup: typeof import('element-plus/lib')['ElRadioGroup']
     ElSubMenu: typeof import('element-plus/lib')['ElSubMenu']
+    FormSection: typeof import('./../src/components/FormSection.vue')['default']
     HeadMenu: typeof import('./../src/components/head/Menu.vue')['default']
     HeadTimer: typeof import('./../src/components/head/Timer.vue')['default']
     HeadToolbar: typeof import('./../src/components/head/Toolbar.vue')['default']
@@ -43,8 +47,14 @@ declare module '@vue/runtime-core' {
     IconCibGithub: typeof import('~icons/cib/github')['default']
     IconCibGoogle: typeof import('~icons/cib/google')['default']
     IconCibYandex: typeof import('~icons/cib/yandex')['default']
+    InputError: typeof import('./../src/components/InputError.vue')['default']
+    Label: typeof import('./../src/components/Label.vue')['default']
     Raw: typeof import('./../src/components/Raw.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SectionBorder: typeof import('./../src/components/SectionBorder.vue')['default']
+    SectionTitle: typeof import('./../src/components/SectionTitle.vue')['default']
+    UserAuthTokens: typeof import('./../src/components/User/Auth/Tokens.vue')['default']
+    UserProfiler: typeof import('./../src/components/User/Profiler.vue')['default']
   }
 }

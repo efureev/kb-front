@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-// import type { Ref } from 'vue'
 import type { UserInfo } from '#/store'
 import { store } from '@/store'
 import { authEndpoint, doLogout, getUserStatus } from '@/api/user'

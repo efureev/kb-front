@@ -1,6 +1,6 @@
 import { withoutSuffix } from './route'
 import { DEFAULT_LOCALE, extractLocaleFromPath } from '@/i18n'
-import type { AppRouteCtx } from '@/@types/app'
+import type { AppRouteCtx } from '@/types/app'
 
 export function baseUrlFn(url: URL | Location | string) {
   const locale = extractLocaleFromPath(typeof url === 'string' ? url : url.pathname)

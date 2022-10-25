@@ -4,8 +4,9 @@ import type { ResponseUserStatusModel } from './model'
 import { useApi, useApiWithAuth } from '@/utils/http/axios'
 
 enum Api {
-  Status = '/status',
-  Logout = '/logout',
+  Status = 'status',
+  // Private = 'private_data',
+  Logout = 'logout',
 }
 
 export { authEndpoint }

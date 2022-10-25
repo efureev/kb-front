@@ -12,3 +12,7 @@ export interface ResponseUserStatusModel {
 export interface ResponseProvidersModel {
   [key: number]: string
 }
+
+export interface ResponseTokensModel {
+  [key: number]: string
+}
